@@ -1,22 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateStock = () => {
   let { id } = useParams();
+  const [stock, setStock] = useState([]);
   const navigate = useNavigate();
 
-  const { data: stock = [], refetch } = useQuery({
-    queryKey: ["stock"],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/stock/${id}`
-      );
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/stock/${id}`)
+      .then((res) => setStock(res.data));
+  }, []);
 
-      return res.data;
-    },
-  });
+  // const { data: stock = [], refetch } = useQuery({
+  //   queryKey: ["stock"],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${import.meta.env.VITE_API_URL}/stock/${id}`
+  //     );
+
+  //     return res.data;
+  //   },
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +57,6 @@ const UpdateStock = () => {
       axios
         .put(`${import.meta.env.VITE_API_URL}/stockData/${id}`, newData)
         .then((response) => {
-          refetch();
           navigate("/stock");
           Swal.fire({
             title: "Updated!",
@@ -69,99 +75,101 @@ const UpdateStock = () => {
     }
   };
   return (
-    <div className="w-11-12 mx-auto flex flex-col items-center justify-center my-10">
-      <h2 className="text-2xl text-center font-semibold mt-10">
-        {" "}
-        Trade Code: {stock?.trade_code}
+    <div className="w-11/12 mx-auto flex flex-col items-center justify-center mb-10">
+      <h2 className="text-2xl text-center font-semibold my-10 text-blue-900">
+        Update Stock: {stock?.trade_code}
       </h2>
-      <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
+      <div className="card bg-base-100 w-full max-w-2xl shrink-0 shadow-md border border-blue-900">
         <div className="card-body">
-          <form onSubmit={handleSubmit} className="fieldset ">
+          <form onSubmit={handleSubmit} className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
               {/* Date */}
               <div>
-                <label className="fieldset-label">Date</label>
+                <label className="font-medium text-blue-900">Date</label>
                 <input
                   defaultValue={stock?.date}
                   name="date"
                   type="date"
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Date"
                 />
               </div>
               {/* Trade Code */}
               <div>
-                <label className="fieldset-label">Trade Code</label>
+                <label className="font-medium text-blue-900">Trade Code</label>
                 <input
                   type="text"
                   name="trade_code"
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Trade Code"
                   defaultValue={stock?.trade_code}
                 />
               </div>
-              {/* high */}
+              {/* High */}
               <div>
-                <label className="fieldset-label">High</label>
+                <label className="font-medium text-blue-900">High</label>
                 <input
                   type="number"
                   name="high"
                   step="0.01"
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="High"
                   defaultValue={stock?.high}
                 />
               </div>
-              {/* low */}
+              {/* Low */}
               <div>
-                <label className="fieldset-label">Low</label>
+                <label className="font-medium text-blue-900">Low</label>
                 <input
                   defaultValue={stock?.low}
                   name="low"
                   step="0.01"
                   type="number"
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Low"
                 />
               </div>
-              {/* open */}
+              {/* Open */}
               <div>
-                <label className="fieldset-label">Open</label>
+                <label className="font-medium text-blue-900">Open</label>
                 <input
                   type="number"
                   name="open"
                   step="0.01"
                   defaultValue={stock?.open}
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Open"
                 />
               </div>
-              {/* close */}
+              {/* Close */}
               <div>
-                <label className="fieldset-label">Close</label>
+                <label className="font-medium text-blue-900">Close</label>
                 <input
                   type="number"
                   name="close"
                   step="0.01"
                   defaultValue={stock?.close}
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Close"
                 />
               </div>
-              {/* volume */}
-              <div>
-                <label className="fieldset-label">Volume</label>
+              {/* Volume */}
+              <div className="col-span-2">
+                <label className="font-medium text-blue-900">Volume</label>
                 <input
                   type="text"
                   name="volume"
                   step="0.01"
                   defaultValue={stock?.volume}
-                  className="input w-full"
+                  className="input w-full border border-blue-900 focus:ring-blue-900"
                   placeholder="Volume"
                 />
               </div>
             </div>
-            <button type="submit" className="btn btn-neutral mt-4">
+            <button
+              type="submit"
+              className="btn bg-blue-900 text-white hover:bg-blue-800 mt-4 w-full"
+            >
               Update
             </button>
           </form>
