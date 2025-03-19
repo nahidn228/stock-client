@@ -28,13 +28,12 @@ const StockData = () => {
     queryKey: ["stocks", page],
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/stocks?page=${page}&limit=${limit}`
+        `https://stock-market-server-blush.vercel.app/stocks?page=${page}&limit=${limit}`
       );
       return res.data;
     },
     keepPreviousData: true,
   });
-
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -56,6 +55,8 @@ const StockData = () => {
     });
   };
 
+  console.log(stocks?.data);
+
   return (
     <div className="mx-auto max-w-screen-xl  rounded py-10">
       <h3 className="text-2xl font-bold text-center mb-6">
@@ -63,8 +64,9 @@ const StockData = () => {
       </h3>
       {isLoading ? (
         <div className="flex gap-2 justify-center items-center min-h-screen">
-          <span className="loading loading-spinner loading-xl text-blue-500"></span> <span className='font-bold text-blue-500 text-2xl'>Loading </span>
-        </div> 
+          <span className="loading loading-spinner loading-xl text-blue-500"></span>{" "}
+          <span className="font-bold text-blue-500 text-2xl">Loading </span>
+        </div>
       ) : (
         <>
           {/* Charts Section */}
@@ -102,7 +104,7 @@ const StockData = () => {
                   <XAxis dataKey="trade_code" stroke="#fff" />
                   <YAxis dataKey="volume" stroke="#fff" />
                   <Tooltip />
-                  <Bar dataKey="volume" fill="#3b82f6" barSize={40} />
+                  <Bar dataKey="volume" fill="#3b82f6" barSize={60} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

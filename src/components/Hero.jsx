@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="hero min-h-screen bg-gradient-to-r from-blue-900 to-blue-700">
+    <div className="hero min-h-screen bg-gradient-to-r from-blue-500 to-blue-700">
       <div className="hero-content text-white text-center mx-auto max-w-screen-xl flex flex-col">
         <img
           className="w-20 h-20 animate-pulse"

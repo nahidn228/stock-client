@@ -12,7 +12,7 @@ const UpdateStock = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/stock/${id}`)
       .then((res) => setStock(res.data));
-  }, []);
+  }, [id]);
 
   // const { data: stock = [], refetch } = useQuery({
   //   queryKey: ["stock"],
