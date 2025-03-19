@@ -1,12 +1,69 @@
-# React + Vite
+# Stock Market Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application that provides an interactive stock market dashboard with real-time stock data visualization, pagination, and CRUD functionalities.
 
-Currently, two official plugins are available:
+## Features
+- 📊 **Stock Data Visualization** using Recharts (Line Chart & Bar Chart)
+- 🔄 **Pagination** for managing large datasets
+- ✏️ **Edit & Delete** stock entries
+- 🛠 **SweetAlert Integration** for user-friendly confirmations
+- 🚀 **React Query** for optimized data fetching
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Challenges Faced
+### Pagination Implementation
+- **State Management Issues:** Managing the current page state while ensuring smooth data fetching.
+- **API Query Parameters:** Handling the `page` and `limit` parameters dynamically.
+- **Loading States:** Managing UI responsiveness while fetching paginated data.
+- **Refetching Issues:** Ensuring updated data is reflected after deletion or modifications.
 
-## Expanding the ESLint configuration
+## Technologies Used
+- React.js
+- React Router
+- Tailwind CSS
+- DaisyUI
+- Axios
+- Recharts
+- React Query (TanStack)
+- SweetAlert
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/your-repo.git
+   cd your-repo
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up environment variables:
+   - Create a `.env` file and add:
+     ```sh
+     VITE_API_URL=your_api_endpoint_here
+     ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+## Deployment
+###  Vercel Fix for 404 Error on Reload
+If you get a **404: Page Not Found** error when reloading, follow these steps:
+- **For Netlify:**
+  1. Create a `_redirects` file in `public/` with the following content:
+     ```
+     /* /index.html 200
+     ```
+- **For Vercel:**
+  1. Add the following `vercel.json` file:
+     ```json
+     {
+       "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+     }
+     ```
+
+## Contributing
+Feel free to fork, improve, and submit pull requests! 🎉
+
+## License
+This project is licensed under the [MIT License](LICENSE).
