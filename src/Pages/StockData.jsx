@@ -63,8 +63,8 @@ const StockData = () => {
       </h3>
       {isLoading ? (
         <div className="flex gap-2 justify-center items-center min-h-screen">
-          <span className="loading loading-spinner loading-xl text-blue-500"></span> <span className='font-bold text-blue-500 text-2xl'>Loading</span>
-        </div>
+          <span className="loading loading-spinner loading-xl text-blue-500"></span> <span className='font-bold text-blue-500 text-2xl'>Loading </span>
+        </div> 
       ) : (
         <>
           {/* Charts Section */}
