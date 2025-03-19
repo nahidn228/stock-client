@@ -29,8 +29,8 @@ A web application that provides an interactive stock market dashboard with real-
 ## Installation & Setup
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo
+   https://github.com/nahidn228/stock-client.git
+   cd stock-client
    ```
 2. Install dependencies:
    ```sh
