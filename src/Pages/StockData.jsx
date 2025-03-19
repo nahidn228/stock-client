@@ -23,13 +23,11 @@ const StockData = () => {
   //   .then((data) => setStock(data));
   console.log(stocks);
   return (
-    <div>
-      <h1 className="font-extrabold text-4xl mb-10">
-        Stock Data: {stocks?.data?.length}
-      </h1>
+    <div >
+      
       {/* Table  */}
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table min-h-screen">
           {/* head */}
           <thead>
             <tr>
